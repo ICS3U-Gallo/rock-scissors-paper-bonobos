@@ -35,27 +35,34 @@ def draw():
     screen.blit(scissors, (625, 300))
     screen.blit(title, (250, 50))
 
+
 def page_1():
-    pass
+    screen.fill(WHITE)
 
 while game:
     computer_choice = choices[randint(0, 2)]
     for event in pygame.event.get():
-        draw()
+        if page == 0:
+            draw()
         x, y = pygame.mouse.get_pos()
+
         if 50 <= x <= 200 and 350 >= y <= 200:
-            if computer_choice == "Rock":
-                page = 1
-            elif computer_choice == "Paper":
-                page = 2
-            elif computer_choice == "Scissors":
-                page = 3
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if computer_choice == "Rock":
+                    page = 1
+                elif computer_choice == "Paper":
+                    page = 2
+                elif computer_choice == "Scissors":
+                    page = 3
 
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
 
     pygame.display.flip()
-    
+    print(page)
+    if page == 1:
+        page_1()
+
 pygame.quit()
 quit()
