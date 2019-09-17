@@ -29,6 +29,11 @@ page = 0
 game = True
 title = font.render('Rock Paper Scissors', False, (0, 0, 0))
 
+area_rock = pygame.Rect(50, 300, 150, 150)
+area_paper = pygame.Rect(325, 300, 150, 150)
+area_scissors = pygame.Rect(625, 300, 150, 150)
+
+
 def draw():
     screen.blit(rock, (50, 300))
     screen.blit(paper, (325, 300))
@@ -39,6 +44,7 @@ def draw():
 def page_1():
     screen.fill(WHITE)
 
+
 while game:
     computer_choice = choices[randint(0, 2)]
     for event in pygame.event.get():
@@ -46,14 +52,30 @@ while game:
             draw()
         x, y = pygame.mouse.get_pos()
 
-        if 50 <= x <= 200 and 350 >= y <= 200:
-            if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if area_rock.collidepoint(event.pos):
                 if computer_choice == "Rock":
                     page = 1
                 elif computer_choice == "Paper":
                     page = 2
                 elif computer_choice == "Scissors":
                     page = 3
+
+            if area_paper.collidepoint(event.pos):
+                if computer_choice == "Rock":
+                    page = 4
+                elif computer_choice == "Paper":
+                    page = 5
+                elif computer_choice == "Scissors":
+                    page = 6
+
+            if area_scissors.collidepoint(event.pos):
+                if computer_choice == "Rock":
+                    page = 7
+                elif computer_choice == "Paper":
+                    page = 8
+                elif computer_choice == "Scissors":
+                    page = 9
 
         if event.type == pygame.QUIT:
             pygame.quit()
