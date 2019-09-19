@@ -32,12 +32,24 @@ title = font.render("Rock Paper Scissors", True, (0, 0, 0))
 page_1_text = font.render("It's a tie!", False, (0, 0, 0))
 page_2_text = font.render("You lose, paper covers rock!", False, (0, 0, 0))
 page_3_text = font.render("You win, rock smashes scissors!", False, (0, 0, 0))
-
+page_4_text = font.render("You win, paper covers rock!", False, (0, 0, 0))
+page_5_text = font.render("You lose, scissors cuts paper!", False, (0, 0, 0))
+page_6_text = font.render("You lose, rock smashes scissors", False, (0, 0, 0))
+page_7_text = font.render("You win, scissors cuts paper", False, (0, 0, 0))
+go_agane_text = font.render("Do you want to GO AGANE????", False, (0, 0, 0))
 
 area_rock = pygame.Rect(50, 300, 150, 150)
 area_paper = pygame.Rect(325, 300, 150, 150)
 area_scissors = pygame.Rect(625, 300, 150, 150)
 
+def go_agane():
+    screen.fill(WHITE)
+    screen.blit(go_agane_text,(50,250))
+    
+    
+    
+    
+    
 
 def draw():
     screen.blit(rock, (50, 300))
@@ -51,39 +63,68 @@ def page_1():
     screen.blit(page_1_text, (250, 50))
 
 
+def page_2():
+    screen.fill(WHITE)
+    screen.blit(page_2_text, (250, 50))
+
+def page_3():
+    screen.fill(WHITE)
+    screen.blit(page_3_text, (250, 50))
+
+def page_4():
+    screen.fill(WHITE)
+    screen.blit(page_4_text, (250, 50))
+
+def page_5():
+    screen.fill(WHITE)
+    screen.blit(page_5_text, (250, 50))
+
+def page_6():
+    screen.fill(WHITE)
+    screen.blit(page_6_text, (250, 50))
+def page_7():
+    screen.fill(WHITE)
+    screen.blit(page_7_text, (250, 50))
+
 
 while game:
     computer_choice = choices[randint(0, 2)]
     for event in pygame.event.get():
         if page == 0:
             draw()
-        x, y = pygame.mouse.get_pos()
-
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if area_rock.collidepoint(event.pos):
-                if computer_choice == "Rock":
-                    page = 1
-                    page_1()
-                elif computer_choice == "Paper":
-                    page = 2
-                elif computer_choice == "Scissors":
-                    page = 3
-
-            if area_paper.collidepoint(event.pos):
-                if computer_choice == "Rock":
-                    page = 4
-                elif computer_choice == "Paper":
-                    page = 1
-                elif computer_choice == "Scissors":
-                    page = 5
-
-            if area_scissors.collidepoint(event.pos):
-                if computer_choice == "Rock":
-                    page = 6
-                elif computer_choice == "Paper":
-                    page = 7
-                elif computer_choice == "Scissors":
-                    page = 1
+        if page == 0:
+            x, y = pygame.mouse.get_pos()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if area_rock.collidepoint(event.pos):
+                    if computer_choice == "Rock":
+                        page = 1
+                        page_1()   
+                    elif computer_choice == "Paper":
+                        page = 2
+                        page_2()
+                    elif computer_choice == "Scissors":
+                        page = 3
+                        page_3()
+                if area_paper.collidepoint(event.pos):
+                    if computer_choice == "Rock":
+                        page = 4
+                        page_4()
+                    elif computer_choice == "Paper":
+                        page = 1
+                        page_1()
+                    elif computer_choice == "Scissors":
+                        page = 5
+                        page_5()
+                if area_scissors.collidepoint(event.pos):
+                    if computer_choice == "Rock":
+                        page = 6
+                        page_6()
+                    elif computer_choice == "Paper":
+                        page = 7
+                        page_7()
+                    elif computer_choice == "Scissors":
+                        page = 1
+                        page_1()
 
         if event.type == pygame.QUIT:
             pygame.quit()
