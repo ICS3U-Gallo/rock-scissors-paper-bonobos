@@ -1,7 +1,7 @@
 """
 Rock, Scissors, Paper
 
-Group members: Nathan, Danny, 
+Group members: Nathan, Danny, Alex, Faraz, Owen
 """
 import pygame
 from random import randint
