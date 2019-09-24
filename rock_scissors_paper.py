@@ -4,6 +4,7 @@ Rock, Scissors, Paper
 Group members: Nathan, Danny, Alex, Faraz, Owen
 """
 import pygame
+import time
 from random import randint
 
 BLACK = (0, 0, 0)
@@ -14,6 +15,7 @@ display_height = 600
 rock = pygame.transform.scale((pygame.image.load('rock.jpg')), (150, 150))
 paper = pygame.transform.scale((pygame.image.load('paper.png')), (150, 150))
 scissors = pygame.transform.scale((pygame.image.load('scissors.jpg')), (150, 150))
+button = pygame.transform.scale((pygame.image.load('playagain.png')), (350, 300))
 
 pygame.init()
 pygame.font.init()
@@ -36,20 +38,18 @@ page_4_text = font.render("You win, paper covers rock!", False, (0, 0, 0))
 page_5_text = font.render("You lose, scissors cuts paper!", False, (0, 0, 0))
 page_6_text = font.render("You lose, rock smashes scissors", False, (0, 0, 0))
 page_7_text = font.render("You win, scissors cuts paper", False, (0, 0, 0))
-go_agane_text = font.render("Do you want to GO AGANE????", False, (0, 0, 0))
 
 area_rock = pygame.Rect(50, 300, 150, 150)
 area_paper = pygame.Rect(325, 300, 150, 150)
 area_scissors = pygame.Rect(625, 300, 150, 150)
+area_button = pygame.Rect(250,50,150,150)
 
-def go_agane():
-    screen.fill(WHITE)
-    screen.blit(go_agane_text,(50,250))
-    
-    
-    
-    
-    
+
+
+
+
+
+
 
 def draw():
     screen.blit(rock, (50, 300))
@@ -58,33 +58,35 @@ def draw():
     screen.blit(title, (250, 50))
 
 
+
 def page_1():
     screen.fill(WHITE)
     screen.blit(page_1_text, (250, 50))
-
-
+    screen.blit(button, (250, 50))
 def page_2():
     screen.fill(WHITE)
     screen.blit(page_2_text, (250, 50))
-
+    screen.blit(button, (250, 50))
 def page_3():
     screen.fill(WHITE)
     screen.blit(page_3_text, (250, 50))
-
+    screen.blit(button, (250, 50))
 def page_4():
     screen.fill(WHITE)
     screen.blit(page_4_text, (250, 50))
-
+    screen.blit(button, (250, 50))
 def page_5():
     screen.fill(WHITE)
     screen.blit(page_5_text, (250, 50))
-
+    screen.blit(button, (250, 50))
 def page_6():
     screen.fill(WHITE)
     screen.blit(page_6_text, (250, 50))
+    screen.blit(button, (250, 50))
 def page_7():
     screen.fill(WHITE)
     screen.blit(page_7_text, (250, 50))
+    screen.blit(button, (250, 50))
 
 
 while game:
@@ -92,13 +94,14 @@ while game:
     for event in pygame.event.get():
         if page == 0:
             draw()
-        if page == 0:
             x, y = pygame.mouse.get_pos()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if area_rock.collidepoint(event.pos):
                     if computer_choice == "Rock":
                         page = 1
-                        page_1()   
+                        page_1()
+                        if area_button.collidepoint(event.pos):
+                            page = 0
                     elif computer_choice == "Paper":
                         page = 2
                         page_2()
@@ -132,8 +135,7 @@ while game:
 
     pygame.display.flip()
     print(page)
-    if page == 1:
-        page_1()
+
 
 pygame.quit()
 quit()
