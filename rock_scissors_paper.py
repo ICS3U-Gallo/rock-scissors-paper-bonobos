@@ -4,7 +4,6 @@ Rock, Scissors, Paper
 Group members: Nathan, Danny, Alex, Faraz, Owen
 """
 import pygame
-import time
 from random import randint
 
 BLACK = (0, 0, 0)
@@ -42,47 +41,53 @@ page_7_text = font.render("You win, scissors cuts paper", False, (0, 0, 0))
 area_rock = pygame.Rect(50, 300, 150, 150)
 area_paper = pygame.Rect(325, 300, 150, 150)
 area_scissors = pygame.Rect(625, 300, 150, 150)
-area_button = pygame.Rect(250,50,150,150)
+area_button = pygame.Rect(250,50,350,300)
 
 
-
-
-
-
-
-
-def draw():
+def page_0():
+    screen.fill(WHITE)
     screen.blit(rock, (50, 300))
     screen.blit(paper, (325, 300))
     screen.blit(scissors, (625, 300))
     screen.blit(title, (250, 50))
 
 
-
 def page_1():
     screen.fill(WHITE)
     screen.blit(page_1_text, (250, 50))
     screen.blit(button, (250, 50))
+    
+    
 def page_2():
     screen.fill(WHITE)
     screen.blit(page_2_text, (250, 50))
     screen.blit(button, (250, 50))
+    
+    
 def page_3():
     screen.fill(WHITE)
     screen.blit(page_3_text, (250, 50))
     screen.blit(button, (250, 50))
+    
+    
 def page_4():
     screen.fill(WHITE)
     screen.blit(page_4_text, (250, 50))
     screen.blit(button, (250, 50))
+    
+    
 def page_5():
     screen.fill(WHITE)
     screen.blit(page_5_text, (250, 50))
     screen.blit(button, (250, 50))
+    
+    
 def page_6():
     screen.fill(WHITE)
     screen.blit(page_6_text, (250, 50))
     screen.blit(button, (250, 50))
+    
+    
 def page_7():
     screen.fill(WHITE)
     screen.blit(page_7_text, (250, 50))
@@ -91,23 +96,24 @@ def page_7():
 
 while game:
     computer_choice = choices[randint(0, 2)]
+    if page == 0:
+        page_0()
     for event in pygame.event.get():
-        if page == 0:
-            draw()
             x, y = pygame.mouse.get_pos()
+            print(x, y)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if area_rock.collidepoint(event.pos):
                     if computer_choice == "Rock":
                         page = 1
                         page_1()
-                        if area_button.collidepoint(event.pos):
-                            page = 0
                     elif computer_choice == "Paper":
                         page = 2
                         page_2()
                     elif computer_choice == "Scissors":
                         page = 3
                         page_3()
+                if area_button.collidepoint(event.pos):
+                    page = 0
                 if area_paper.collidepoint(event.pos):
                     if computer_choice == "Rock":
                         page = 4
@@ -118,6 +124,8 @@ while game:
                     elif computer_choice == "Scissors":
                         page = 5
                         page_5()
+                if area_button.collidepoint(event.pos):
+                    page = 0
                 if area_scissors.collidepoint(event.pos):
                     if computer_choice == "Rock":
                         page = 6
@@ -128,10 +136,12 @@ while game:
                     elif computer_choice == "Scissors":
                         page = 1
                         page_1()
-
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            quit()
+                if area_button.collidepoint(event.pos):
+                    page = 0
+                
+    if event.type == pygame.QUIT:
+        pygame.quit()
+        quit()
 
     pygame.display.flip()
     print(page)
