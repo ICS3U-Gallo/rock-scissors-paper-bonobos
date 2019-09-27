@@ -1,8 +1,3 @@
-"""
-Rock, Scissors, Paper
-
-Group members: Nathan, Danny, Alex, Faraz, Owen
-"""
 import pygame
 from random import randint
 
@@ -11,10 +6,17 @@ WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 display_width = 800
 display_height = 600
-rock = pygame.transform.scale((pygame.image.load('rock.jpg')), (150, 150))
-paper = pygame.transform.scale((pygame.image.load('paper.png')), (150, 150))
-scissors = pygame.transform.scale((pygame.image.load('scissors.jpg')), (150, 150))
-button = pygame.transform.scale((pygame.image.load('playagain.png')), (350, 300))
+
+rock = pygame.image.load('rock.jpg')
+paper = pygame.image.load('paper.png')
+scissors = pygame.image.load('scissors.jpg')
+button = pygame.image.load('playagain.png')
+
+rock = pygame.transform.scale(rock, (150, 150))
+paper = pygame.transform.scale(paper, (150, 150))
+scissors = pygame.transform.scale(scissors, (150, 150))
+button = pygame.transform.scale(button, (350, 300))
+
 
 pygame.init()
 pygame.font.init()
@@ -116,8 +118,6 @@ def page_7():
 while game:
     computer_score_text = other_font.render('Computer Score: {}'.format(computer_score), True, (0, 0, 0))
     player_score_text = other_font.render('Player Score: {}'.format(player_score), True, (0, 0, 0))
-
-
     computer_choice = choices[randint(0, 2)]
     if page == 0:
         page_0()
@@ -137,8 +137,7 @@ while game:
                     page = 3
                     page_3()
                     player_score += 1
-            if area_button.collidepoint(event.pos):
-                page = 0
+
             if area_paper.collidepoint(event.pos):
                 if computer_choice == "Rock":
                     page = 4
@@ -151,8 +150,7 @@ while game:
                     page = 5
                     page_5()
                     computer_score += 1
-            if area_button.collidepoint(event.pos):
-                page = 0
+
             if area_scissors.collidepoint(event.pos):
                 if computer_choice == "Rock":
                     page = 6
