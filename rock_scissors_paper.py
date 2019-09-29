@@ -68,7 +68,7 @@ page_5_text = title_font.render("You lose! Scissors cuts paper!", True, (255, 0,
 page_6_text = title_font.render("You lose! Rock smashes scissors!", True, (255, 0, 0))
 page_7_text = title_font.render("You win! Scissors cuts paper!", True, (0, 255, 0))
 
-area_classic_game_mode = pygame.Rect(50, 250, 300, 300) 
+area_classic_game_mode = pygame.Rect(50, 250, 300, 300)
 area_best_of_game_mode = pygame.Rect(450, 250, 300, 300)
 area_best_of_3 = pygame.Rect(25, 300, 200, 200)
 area_best_of_5 = pygame.Rect(300, 300, 200, 200)
@@ -90,6 +90,7 @@ def page_template(page_number):
     screen.blit(computer_icon, (450, 520))
     screen.blit(score, (350, 530))
 
+
 def classic_mode_page():
     screen.fill(WHITE)
     screen.blit(rock, (50, 200))
@@ -100,12 +101,14 @@ def classic_mode_page():
     screen.blit(computer_icon, (450, 520))
     screen.blit(score, (350, 530))
 
+
 def best_of_mode_page():
     screen.fill(WHITE)
     screen.blit(choose_how_many_rounds, (145, 50))
     screen.blit(best_of_3, (25, 300))
     screen.blit(best_of_5, (300, 300))
     screen.blit(best_of_7, (600, 300))
+
 
 def home_page():
     screen.fill(WHITE)
@@ -114,10 +117,12 @@ def home_page():
     screen.blit(classic_game_mode, (50, 250))
     screen.blit(best_of_game_mode, (450, 250))
 
+
 def you_win_page():
     screen.fill(WHITE)
     screen.blit(you_win_msg, (190, 50))
     screen.blit(play_again_button, (240, 350))
+
 
 def computer_wins_page():
     screen.fill(WHITE)
@@ -129,7 +134,7 @@ max_score = 100
 
 while game:
     computer_choice = choices[randint(0, 2)]
-    if(next_step==0):
+    if(next_step == 0):
         home_page()
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -138,21 +143,21 @@ while game:
                     page = 0
                 if area_best_of_game_mode.collidepoint(event.pos):
                     next_step = 2
-    
+
     if(next_step == 2):
         best_of_mode_page()
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if area_best_of_3.collidepoint(event.pos):
-                    next_step=1
-                    max_score=3
+                    next_step = 1
+                    max_score = 3
                 elif area_best_of_5.collidepoint(event.pos):
-                    next_step=1
-                    max_score=5
+                    next_step = 1
+                    max_score = 5
                 elif area_best_of_7.collidepoint(event.pos):
-                    next_step=1
-                    max_score=7
-    
+                    next_step = 1
+                    max_score = 7
+
     elif(next_step == 1):
         score = score_font.render('{}:{}'.format(player_score, computer_score), True, (0, 0, 0))
         if page == 0:
