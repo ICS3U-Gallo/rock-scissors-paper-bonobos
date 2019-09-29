@@ -74,9 +74,9 @@ area_best_of_3 = pygame.Rect(25, 300, 200, 200)
 area_best_of_5 = pygame.Rect(300, 300, 200, 200)
 area_best_of_7 = pygame.Rect(600, 300, 200, 200)
 
-area_rock = pygame.Rect(50, 300, 150, 150)
-area_paper = pygame.Rect(325, 300, 150, 150)
-area_scissors = pygame.Rect(625, 300, 150, 150)
+area_rock = pygame.Rect(50, 200, 150, 150)
+area_paper = pygame.Rect(325, 200, 150, 150)
+area_scissors = pygame.Rect(625, 200, 150, 150)
 area_play_again_button = pygame.Rect(240, 350, 350, 300)
 
 page_text = [title, page_1_text, page_2_text, page_3_text, page_4_text, page_5_text, page_6_text, page_7_text]
@@ -92,9 +92,9 @@ def page_template(page_number):
 
 def classic_mode_page():
     screen.fill(WHITE)
-    screen.blit(rock, (50, 300))
-    screen.blit(paper, (325, 300))
-    screen.blit(scissors, (625, 300))
+    screen.blit(rock, (50, 200))
+    screen.blit(paper, (325, 200))
+    screen.blit(scissors, (625, 200))
     screen.blit(title, (200, 50))
     screen.blit(player_icon, (275, 520))
     screen.blit(computer_icon, (450, 520))
