@@ -7,25 +7,22 @@ RED = (255, 0, 0)
 display_width = 800
 display_height = 600
 
-classic_game_mode = pygame.image.load('classicgamemode.png')
-best_of_game_mode = pygame.image.load('bestofgamemode.PNG')
-best_of_3 = pygame.image.load('bestof3.png')
-best_of_5 = pygame.image.load('bestof5.png')
-best_of_7 = pygame.image.load('bestof7.png')
+classic_game_mode = pygame.image.load('Images/classicgamemode.png')
+best_of_game_mode = pygame.image.load('Images/bestofgamemode.png')
+best_of_3 = pygame.image.load('Images/bestof3.png')
+best_of_5 = pygame.image.load('Images/bestof5.png')
+best_of_7 = pygame.image.load('Images/bestof7.png')
 
-rock = pygame.image.load('rock.jpg')
-paper = pygame.image.load('paper.png')
-scissors = pygame.image.load('scissors.jpg')
-play_again_button = pygame.image.load('playagain.png')
-home_button = pygame.image.load('homebutton.png')
+rock = pygame.image.load('Images/rock.jpg')
+paper = pygame.image.load('Images/paper.png')
+scissors = pygame.image.load('Images/scissors.jpg')
+play_again_button = pygame.image.load('Images/playagain.png')
 
-computer_icon = pygame.image.load('computericon.png')
-player_icon = pygame.image.load('playericon.png')
+computer_icon = pygame.image.load('Images/computericon.png')
+player_icon = pygame.image.load('Images/playericon.png')
 
-computer_wins_msg = pygame.image.load('computerwinsmsg.JPG')
-you_win_msg = pygame.image.load('youwinmsg.JPG')
-
-
+computer_wins_msg = pygame.image.load('Images/computerwinsmsg.jpg')
+you_win_msg = pygame.image.load('Images/youwinmsg.jpg')
 classic_game_mode = pygame.transform.scale(classic_game_mode, (300, 300))
 best_of_game_mode = pygame.transform.scale(best_of_game_mode, (300, 300))
 best_of_3 = pygame.transform.scale(best_of_3, (200, 200))
