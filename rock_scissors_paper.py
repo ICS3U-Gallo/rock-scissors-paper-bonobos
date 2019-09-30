@@ -12,7 +12,7 @@ best_of_game_mode = pygame.image.load('Images/bestofgamemode.png')
 best_of_3 = pygame.image.load('Images/bestof3.png')
 best_of_5 = pygame.image.load('Images/bestof5.png')
 best_of_7 = pygame.image.load('Images/bestof7.png')
-
+home_button = pygame.image.load('Images/homebutton.png')
 rock = pygame.image.load('Images/rock.jpg')
 paper = pygame.image.load('Images/paper.png')
 scissors = pygame.image.load('Images/scissors.jpg')
