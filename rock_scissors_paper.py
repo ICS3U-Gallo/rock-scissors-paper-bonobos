@@ -8,7 +8,7 @@ display_width = 800
 display_height = 600
 
 classic_game_mode = pygame.image.load('classicgamemode.png')
-best_of_game_mode = pygame.image.load('bestofgamemode.png')
+best_of_game_mode = pygame.image.load('bestofgamemode.PNG')
 best_of_3 = pygame.image.load('bestof3.png')
 best_of_5 = pygame.image.load('bestof5.png')
 best_of_7 = pygame.image.load('bestof7.png')
@@ -17,12 +17,13 @@ rock = pygame.image.load('rock.jpg')
 paper = pygame.image.load('paper.png')
 scissors = pygame.image.load('scissors.jpg')
 play_again_button = pygame.image.load('playagain.png')
+home_button = pygame.image.load('homebutton.png')
 
 computer_icon = pygame.image.load('computericon.png')
 player_icon = pygame.image.load('playericon.png')
 
-computer_wins_msg = pygame.image.load('computerwinsmsg.jpg')
-you_win_msg = pygame.image.load('youwinmsg.jpg')
+computer_wins_msg = pygame.image.load('computerwinsmsg.JPG')
+you_win_msg = pygame.image.load('youwinmsg.JPG')
 
 
 classic_game_mode = pygame.transform.scale(classic_game_mode, (300, 300))
@@ -34,6 +35,7 @@ rock = pygame.transform.scale(rock, (150, 150))
 paper = pygame.transform.scale(paper, (150, 150))
 scissors = pygame.transform.scale(scissors, (150, 150))
 play_again_button = pygame.transform.scale(play_again_button, (350, 300))
+home_button = pygame.transform.scale(home_button, (75, 75))
 
 computer_icon = pygame.transform.scale(computer_icon, (75, 75))
 player_icon = pygame.transform.scale(player_icon, (75, 75))
@@ -77,7 +79,8 @@ area_best_of_7 = pygame.Rect(600, 300, 200, 200)
 area_rock = pygame.Rect(50, 200, 150, 150)
 area_paper = pygame.Rect(325, 200, 150, 150)
 area_scissors = pygame.Rect(625, 200, 150, 150)
-area_play_again_button = pygame.Rect(240, 350, 350, 300)
+area_play_again_button = pygame.Rect(350, 425, 150, 100)
+area_home_button = pygame.Rect(720, 520, 75, 75)
 
 page_text = [title, page_1_text, page_2_text, page_3_text, page_4_text, page_5_text, page_6_text, page_7_text]
 
@@ -89,6 +92,7 @@ def page_template(page_number):
     screen.blit(player_icon, (275, 520))
     screen.blit(computer_icon, (450, 520))
     screen.blit(score, (350, 530))
+    screen.blit(home_button, (720, 520))
 
 
 def classic_mode_page():
@@ -100,6 +104,7 @@ def classic_mode_page():
     screen.blit(player_icon, (275, 520))
     screen.blit(computer_icon, (450, 520))
     screen.blit(score, (350, 530))
+    screen.blit(home_button, (720, 520))
 
 
 def best_of_mode_page():
@@ -134,7 +139,7 @@ max_score = 100
 
 while game:
     computer_choice = choices[randint(0, 2)]
-    if(next_step == 0):
+    if next_step == 0:
         home_page()
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -144,67 +149,73 @@ while game:
                 if area_best_of_game_mode.collidepoint(event.pos):
                     next_step = 2
 
-    if(next_step == 2):
+    if next_step == 2:
         best_of_mode_page()
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if area_best_of_3.collidepoint(event.pos):
                     next_step = 1
-                    max_score = 3
+                    max_score = 2
                 elif area_best_of_5.collidepoint(event.pos):
                     next_step = 1
-                    max_score = 5
+                    max_score = 3
                 elif area_best_of_7.collidepoint(event.pos):
                     next_step = 1
-                    max_score = 7
+                    max_score = 5
 
-    elif(next_step == 1):
+    elif next_step == 1:
         score = score_font.render('{}:{}'.format(player_score, computer_score), True, (0, 0, 0))
         if page == 0:
             classic_mode_page()
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if area_rock.collidepoint(event.pos):
-                    if computer_choice == "Rock":
-                        page = 1
-                        page_template(1)
-                    elif computer_choice == "Paper":
-                        page = 2
-                        page_template(2)
-                        computer_score += 1
-                    elif computer_choice == "Scissors":
-                        page = 3
-                        page_template(3)
-                        player_score += 1
+                if page == 0:
+                    if area_rock.collidepoint(event.pos):
+                        if computer_choice == "Rock":
+                            page = 1
+                            page_template(1)
+                        elif computer_choice == "Paper":
+                            page = 2
+                            page_template(2)
+                            computer_score += 1
+                        elif computer_choice == "Scissors":
+                            page = 3
+                            page_template(3)
+                            player_score += 1
 
-                if area_paper.collidepoint(event.pos):
-                    if computer_choice == "Rock":
-                        page = 4
-                        page_template(4)
-                        player_score += 1
-                    elif computer_choice == "Paper":
-                        page = 1
-                        page_template(1)
-                    elif computer_choice == "Scissors":
-                        page = 5
-                        page_template(5)
-                        computer_score += 1
+                    if area_paper.collidepoint(event.pos):
+                        if computer_choice == "Rock":
+                            page = 4
+                            page_template(4)
+                            player_score += 1
+                        elif computer_choice == "Paper":
+                            page = 1
+                            page_template(1)
+                        elif computer_choice == "Scissors":
+                            page = 5
+                            page_template(5)
+                            computer_score += 1
 
-                if area_scissors.collidepoint(event.pos):
-                    if computer_choice == "Rock":
-                        page = 6
-                        page_template(6)
-                        computer_score += 1
-                    elif computer_choice == "Paper":
-                        page = 7
-                        page_template(7)
-                        player_score += 1
-                    elif computer_choice == "Scissors":
-                        page = 1
-                        page_template(1)
+                    if area_scissors.collidepoint(event.pos):
+                        if computer_choice == "Rock":
+                            page = 6
+                            page_template(6)
+                            computer_score += 1
+                        elif computer_choice == "Paper":
+                            page = 7
+                            page_template(7)
+                            player_score += 1
+                        elif computer_choice == "Scissors":
+                            page = 1
+                            page_template(1)
 
                 if area_play_again_button.collidepoint(event.pos):
                     page = 0
+                if area_home_button.collidepoint(event.pos):
+                    next_step = 0
+                    player_score = 0
+                    computer_score = 0
+                    max_score = 100
 
     if max_score == player_score:
         you_win_page()
