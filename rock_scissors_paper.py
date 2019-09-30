@@ -17,12 +17,11 @@ rock = pygame.image.load('Images/rock.jpg')
 paper = pygame.image.load('Images/paper.png')
 scissors = pygame.image.load('Images/scissors.jpg')
 play_again_button = pygame.image.load('Images/playagain.png')
-
 computer_icon = pygame.image.load('Images/computericon.png')
 player_icon = pygame.image.load('Images/playericon.png')
-
 computer_wins_msg = pygame.image.load('Images/computerwinsmsg.jpg')
 you_win_msg = pygame.image.load('Images/youwinmsg.jpg')
+
 classic_game_mode = pygame.transform.scale(classic_game_mode, (300, 300))
 best_of_game_mode = pygame.transform.scale(best_of_game_mode, (300, 300))
 best_of_3 = pygame.transform.scale(best_of_3, (200, 200))
@@ -31,7 +30,7 @@ best_of_7 = pygame.transform.scale(best_of_7, (200, 200))
 rock = pygame.transform.scale(rock, (150, 150))
 paper = pygame.transform.scale(paper, (150, 150))
 scissors = pygame.transform.scale(scissors, (150, 150))
-play_again_button = pygame.transform.scale(play_again_button, (350, 300))
+play_again_button = pygame.transform.scale(play_again_button, (125, 50))
 home_button = pygame.transform.scale(home_button, (75, 75))
 
 computer_icon = pygame.transform.scale(computer_icon, (75, 75))
@@ -46,7 +45,7 @@ title_font = pygame.font.SysFont('Adobe Garamond Pro Bold', 50)
 score_font = pygame.font.SysFont('Consolas', 60)
 screen = pygame.display.set_mode([display_width, display_height])
 screen.fill(WHITE)
-pygame.display.set_caption("Rock, Scissors, Paper")
+pygame.display.set_caption("Rock, Scissors, Paper!")
 
 choices = ["Rock", "Paper", "Scissors"]
 
@@ -55,14 +54,10 @@ player_score = 0
 page = 0
 game = True
 
-welcome_text = "Welcome to rock, paper, scissors!"
-welcome_msg = title_font.render(welcome_text, True, (43, 114, 255))
-game_mode_text = "Choose a game mode."
-choose_game_mode_msg = title_font.render(game_mode_text, True, (85, 133, 230))
-num_of_rounds_text = "Choose the number of rounds"
-choose_how_many_rounds = title_font.render(num_of_rounds_text, True, (43, 114, 255))
-title_text = "Rock, Paper, or Scissors?"
-title = title_font.render(title_text, True, (43, 114, 255))
+welcome_msg = title_font.render("Welcome to rock, paper, scissors!", True, (43, 114, 255))
+choose_game_mode_msg = title_font.render("Choose a game mode.", True, (85, 133, 230))
+choose_how_many_rounds = title_font.render("Choose the number of rounds", True, (43, 114, 255))
+title = title_font.render("Rock, Paper, or Scissors?", True, (43, 114, 255))
 page_1_text = title_font.render("It's a tie!", True, (0, 0, 0))
 page_2_text = title_font.render("You lose! Paper covers rock!", True, (255, 0, 0))
 page_3_text = title_font.render("You win! Rock smashes scissors!", True, (0, 255, 0))
@@ -80,7 +75,7 @@ area_best_of_7 = pygame.Rect(600, 300, 200, 200)
 area_rock = pygame.Rect(50, 200, 150, 150)
 area_paper = pygame.Rect(325, 200, 150, 150)
 area_scissors = pygame.Rect(625, 200, 150, 150)
-area_play_again_button = pygame.Rect(350, 425, 150, 100)
+area_play_again_button = pygame.Rect(335, 450, 150, 75)
 area_home_button = pygame.Rect(720, 520, 75, 75)
 
 page_text = [title, page_1_text, page_2_text, page_3_text, page_4_text, page_5_text, page_6_text, page_7_text]
@@ -89,7 +84,7 @@ page_text = [title, page_1_text, page_2_text, page_3_text, page_4_text, page_5_t
 def page_template(page_number):
     screen.fill(WHITE)
     screen.blit(page_text[page_number], (150, 50))
-    screen.blit(play_again_button, (240, 325))
+    screen.blit(play_again_button, (335, 450))
     screen.blit(player_icon, (275, 520))
     screen.blit(computer_icon, (450, 520))
     screen.blit(score, (350, 530))
@@ -126,14 +121,14 @@ def home_page():
 
 def you_win_page():
     screen.fill(WHITE)
-    screen.blit(you_win_msg, (190, 50))
-    screen.blit(play_again_button, (240, 350))
+    screen.blit(you_win_msg, (175, 50))
+    screen.blit(play_again_button, (335, 450))
 
 
 def computer_wins_page():
     screen.fill(WHITE)
-    screen.blit(computer_wins_msg, (190, 50))
-    screen.blit(play_again_button, (240, 350))
+    screen.blit(computer_wins_msg, (175, 50))
+    screen.blit(play_again_button, (335, 450))
 
 next_step = 0
 max_score = 100
