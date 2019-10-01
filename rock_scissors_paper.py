@@ -32,10 +32,8 @@ paper = pygame.transform.scale(paper, (150, 150))
 scissors = pygame.transform.scale(scissors, (150, 150))
 play_again_button = pygame.transform.scale(play_again_button, (125, 50))
 home_button = pygame.transform.scale(home_button, (75, 75))
-
 computer_icon = pygame.transform.scale(computer_icon, (75, 75))
 player_icon = pygame.transform.scale(player_icon, (75, 75))
-
 computer_wins_msg = pygame.transform.scale(computer_wins_msg, (450, 400))
 you_win_msg = pygame.transform.scale(you_win_msg, (450, 400))
 
@@ -47,24 +45,26 @@ screen = pygame.display.set_mode([display_width, display_height])
 screen.fill(WHITE)
 pygame.display.set_caption("Rock, Scissors, Paper!")
 
-choices = ["Rock", "Paper", "Scissors"]
-
-computer_score = 0
-player_score = 0
-page = 0
-game = True
-
-welcome_msg = title_font.render("Welcome to rock, paper, scissors!", True, (43, 114, 255))
-choose_game_mode_msg = title_font.render("Choose a game mode.", True, (85, 133, 230))
-choose_how_many_rounds = title_font.render("Choose the number of rounds", True, (43, 114, 255))
+welcome_msg = title_font.render("Welcome to rock, paper, scissors!", True,
+                                (43, 114, 255))
+choose_game_mode_msg = title_font.render("Choose a game mode.", True,
+                                         (85, 133, 230))
+choose_how_many_rounds = title_font.render("Choose the number of rounds.",
+                                           True, (43, 114, 255))
 title = title_font.render("Rock, Paper, or Scissors?", True, (43, 114, 255))
-page_1_text = title_font.render("It's a tie!", True, (0, 0, 0))
-page_2_text = title_font.render("You lose! Paper covers rock!", True, (255, 0, 0))
-page_3_text = title_font.render("You win! Rock smashes scissors!", True, (0, 255, 0))
-page_4_text = title_font.render("You win! Paper covers rock!", True, (0, 255, 0))
-page_5_text = title_font.render("You lose! Scissors cuts paper!", True, (255, 0, 0))
-page_6_text = title_font.render("You lose! Rock smashes scissors!", True, (255, 0, 0))
-page_7_text = title_font.render("You win! Scissors cuts paper!", True, (0, 255, 0))
+tie_text = title_font.render("It's a tie!", True, (0, 0, 0))
+L_p_r_text = title_font.render("You lose! Paper covers rock!", True,
+                               (255, 0, 0))
+W_r_s_text = title_font.render("You win! Rock smashes scissors!", True,
+                               (0, 255, 0))
+W_p_r_text = title_font.render("You win! Paper covers rock!", True,
+                               (0, 255, 0))
+L_s_p_text = title_font.render("You lose! Scissors cuts paper!", True,
+                               (255, 0, 0))
+L_r_s_text = title_font.render("You lose! Rock smashes scissors!", True,
+                               (255, 0, 0))
+W_s_p_text = title_font.render("You win! Scissors cuts paper!", True,
+                               (0, 255, 0))
 
 area_classic_game_mode = pygame.Rect(50, 250, 300, 300)
 area_best_of_game_mode = pygame.Rect(450, 250, 300, 300)
@@ -78,7 +78,8 @@ area_scissors = pygame.Rect(625, 200, 150, 150)
 area_play_again_button = pygame.Rect(335, 450, 150, 75)
 area_home_button = pygame.Rect(720, 520, 75, 75)
 
-page_text = [title, page_1_text, page_2_text, page_3_text, page_4_text, page_5_text, page_6_text, page_7_text]
+page_text = [title, tie_text, L_p_r_text, W_r_s_text, W_p_r_text, L_s_p_text,
+             L_r_s_text, W_s_p_text]
 
 
 def page_template(page_number):
@@ -130,8 +131,14 @@ def computer_wins_page():
     screen.blit(computer_wins_msg, (175, 50))
     screen.blit(play_again_button, (335, 450))
 
+game = True
 next_step = 0
 max_score = 100
+computer_score = 0
+player_score = 0
+page = 0
+
+choices = ["Rock", "Paper", "Scissors"]
 
 while game:
     computer_choice = choices[randint(0, 2)]
@@ -160,7 +167,8 @@ while game:
                     max_score = 5
 
     elif next_step == 1:
-        score = score_font.render('{}:{}'.format(player_score, computer_score), True, (0, 0, 0))
+        score = score_font.render('{}:{}'.format(player_score, computer_score),
+                                  True, (0, 0, 0))
         if page == 0:
             classic_mode_page()
         for event in pygame.event.get():
